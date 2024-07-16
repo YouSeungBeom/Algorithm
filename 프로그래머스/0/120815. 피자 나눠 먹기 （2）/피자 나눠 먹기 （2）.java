@@ -1,19 +1,14 @@
 class Solution {
     public int solution(int n) {
-        int slicesPerPizza = 6;
+        int answer = 0;
         
-        int a = slicesPerPizza;
-        int b = n;
-        while (b != 0) {
-            int temp = b;
-            b = a % b;
-            a = temp;
+        for(int i = 1; i <= n; i++){
+            if(i * 6 % n == 0){
+                answer = i;
+                break;
+            }
         }
-        int gcd = a;
         
-        int lcm = (slicesPerPizza * n) / gcd;
-        
-        int answer = lcm / slicesPerPizza;
         return answer;
     }
 }
