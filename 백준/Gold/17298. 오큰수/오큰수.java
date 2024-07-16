@@ -12,31 +12,27 @@ class Main {
         
         int N = Integer.parseInt(br.readLine());
         String[] s = br.readLine().split(" ");
-        Stack<Integer> mystack = new Stack();
-
-        mystack.push(0);
+        Stack<Integer> mystack = new Stack<>();
         
-        int[] A = new int[N];
         int[] answer = new int[N];
         
-        for(int i = 0; i < N; i++) {
-        	A[i] = Integer.parseInt(s[i]);
+        for (int i = 0; i < N; i++) {
+            int num = Integer.parseInt(s[i]);
+            
+            while (!mystack.isEmpty() && Integer.parseInt(s[mystack.peek()]) < num) {
+                answer[mystack.pop()] = num;
+            }
+            mystack.push(i);
         }
         
-        for(int i = 1; i < N; i++) {
-        	while(!mystack.empty() && A[mystack.peek()] < A[i]) {
-        		answer[mystack.peek()] = A[i];
-        		mystack.pop();
-        	}
-        	mystack.push(i);
+        while (!mystack.isEmpty()) {
+            answer[mystack.pop()] = -1;
         }
-        while(!mystack.empty()) {
-        	answer[mystack.peek()] = -1;
-        	mystack.pop();
+        
+        for (int i : answer) {
+            bw.write(i + " ");
         }
-        for(int i : answer) {
-        	bw.write(Integer.toString(i) + " ");
-        }
+        
         bw.flush();
         bw.close();
         br.close();
