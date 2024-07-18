@@ -1,9 +1,3 @@
-/*
-K칸 점프, 온 거리 * 2 순간이동
-순간이동 -> 건전지 사용 안 함.
-점프 -> K만큼 건전지 사용.
-*/
-
 import java.util.*;
 
 public class Solution {
