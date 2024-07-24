@@ -1,7 +1,7 @@
 class Solution {
     public int solution(int a, int b, int n) {
-        int answer = b * (n / a);
-        int cola = n % a + b * (n / a);
+        int answer = 0;
+        int cola = n;
         while(cola >= a) {
             answer += b * (cola / a);
             cola = cola % a + b * (cola / a);
