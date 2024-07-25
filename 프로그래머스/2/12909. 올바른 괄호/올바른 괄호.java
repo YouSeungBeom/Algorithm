@@ -1,8 +1,6 @@
 class Solution {
     boolean solution(String s) {
         int count = 0;
-        boolean answer = false;
-        
         for(int i = 0; i < s.length(); i++) {
             if(count < 0) {
                 break;
@@ -13,11 +11,6 @@ class Solution {
                 count--;
             }
         }
-        
-        if(count == 0) {
-            answer = true;
-        }
-        
-        return answer;
+        return count == 0;
     }
 }
