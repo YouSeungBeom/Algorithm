@@ -11,14 +11,12 @@ class Solution {
         for (int i = 1; i < words.length; i++) {
             String currentWord = words[i];
 
-            if (lastChar != currentWord.charAt(0) || usedWords.contains(currentWord)) {
+            if (lastChar != currentWord.charAt(0) || !usedWords.add(currentWord)) {
                 answer[0] = i % n + 1;
                 answer[1] = i / n + 1;
                 return answer;
             }
-
             lastChar = currentWord.charAt(currentWord.length() - 1);
-            usedWords.add(currentWord);
         }
 
         return answer;
