@@ -1,13 +1,6 @@
 class Solution {
     public int solution(int num, int k) {
-        String numStr = Integer.toString(num);
-        String kStr = Integer.toString(k);
-        
-        for (int i = 0; i < numStr.length(); i++) {
-            if (numStr.charAt(i) == kStr.charAt(0)) {
-                return i + 1;
-            }
-        }
-        return -1;
+        int answer = Integer.toString(num).indexOf(Integer.toString(k));
+        return answer > -1 ? answer + 1 : answer;
     }
 }
