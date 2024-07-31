@@ -16,9 +16,15 @@ class Solution {
                 b += Integer.parseInt(str[i]);
             }
         }
-        return a > 1 && b > 0 ? a + "x + " + b :
-               a == 1 && b > 0 ? "x + " + b :
-               a == 0 ? b + "" : 
-               a == 1 ? "x" : a + "x";
+        if (a == 1) {
+            return b > 0 ? "x + " + b : "x";
+        }
+        else if (a == 0) {
+            return b + "";
+        }
+        else if (a > 1) {
+            return b > 0 ? a + "x + " + b : a + "x";
+        }
+        return a + "x";
     }
 }
