@@ -18,8 +18,7 @@ class Main {
 			}
 		}
 		
-		A[N - 1] = 1;
-		A[N - 2] = 0;
+		A[N - 1] = 0;
 		
 		for(int i = 0; i < N; i++) {
 			bw.write(Integer.toString(A[i]) + " ");
