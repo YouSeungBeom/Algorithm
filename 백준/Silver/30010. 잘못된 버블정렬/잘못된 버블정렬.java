@@ -21,9 +21,8 @@ class Main {
 		A[N - 1] = 0;
 		
 		for(int i = 0; i < N; i++) {
-			bw.write(Integer.toString(A[i]) + " ");
+			bw.write(A[i] + " ");
 		}
-		
 		
 		bw.flush();
 		bw.close();
