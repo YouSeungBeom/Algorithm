@@ -9,6 +9,6 @@ class Solution {
             set.add(nums[i]);
         }
         
-        return set.size() <= nums.length / 2 ? set.size() : nums.length / 2;
+        return Math.min(set.size(), nums.length / 2);
     }
 }
