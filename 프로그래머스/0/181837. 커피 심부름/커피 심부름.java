@@ -2,11 +2,11 @@ class Solution {
     public int solution(String[] order) {
         int answer = 0;
         for(int i = 0; i < order.length; i++) {
-            if(order[i].contains("americano") || order[i].contains("anything")) {
-                answer += 4500;
+            if(order[i].contains("cafelatte")) {
+                answer += 5000;
             }
             else {
-                answer += 5000;
+                answer += 4500;
             }
         }
         return answer;
