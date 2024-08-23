@@ -20,7 +20,8 @@ class Solution {
         int count = set.size();                         // 차량 개수
         int[] answer = new int[count];
         List<Integer> car_nums = new ArrayList<>(set);      // 인덱스를 이용해 set의 요소를 불러오기 위함.
-            
+        
+        // 누적 주차 시간 계산
         for(int i = 0; i < count; i++) {
             int time = 0;                               // 누적 주차시간
             boolean IN = false;                         // 주차장에 차의 유무 판단
@@ -42,13 +43,13 @@ class Solution {
                 answer[i] += 1439;
             }
         }
-        
+        // 누적 시간을 토대로 요금 계산
         for(int i = 0; i < count; i++) {
-            answer[i] -= fees[0];
-            if(answer[i] <= 0) {
+            answer[i] -= fees[0];                       // 기본 시간 빼기
+            if(answer[i] <= 0) {                        // 기본 시간 이하인 경우
                 answer[i] = fees[1];
             }
-            else {
+            else {                                      // 기본 시간 초과한 경우
                 if(answer[i] % fees[2] == 0) {
                     answer[i] = fees[1] + (answer[i] / fees[2]) * fees[3];
                 }
