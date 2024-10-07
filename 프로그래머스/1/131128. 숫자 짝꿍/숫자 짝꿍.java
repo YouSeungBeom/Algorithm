@@ -18,14 +18,7 @@ class Solution {
                 sb.append(i);
             }
         }
-        toZero(sb);
-        return sb.length() == 0 ? "-1" : sb.toString();
-    }
-    
-    void toZero (StringBuilder s) {
-        if(s.toString().matches("0+")) {
-            s.setLength(0);
-            s.append(0);
-        }
+        return sb.length() == 0 ? "-1" : 
+               sb.toString().charAt(0) == '0' ? "0" : sb.toString();
     }
 }
