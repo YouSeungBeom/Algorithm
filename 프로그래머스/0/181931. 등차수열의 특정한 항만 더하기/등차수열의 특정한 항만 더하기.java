@@ -3,9 +3,8 @@ class Solution {
         int answer = 0;
         
         for(int i = 0; i < included.length; i++) {
-            int tmp = a + (i * d);
             if(included[i]) {
-                answer += tmp;
+                answer += a + (i * d);
             }
         }
         return answer;
