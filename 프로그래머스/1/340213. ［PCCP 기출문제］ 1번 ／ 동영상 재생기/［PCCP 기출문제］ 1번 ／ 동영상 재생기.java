@@ -1,9 +1,9 @@
 class Solution {
     public String solution(String video_len, String pos, String op_start, String op_end, String[] commands) {
-        int total_time = Integer.parseInt(video_len.split(":")[0]) * 60 + Integer.parseInt(video_len.split(":")[1]);
-        int time = Integer.parseInt(pos.split(":")[0]) * 60 + Integer.parseInt(pos.split(":")[1]);
-        int op_start_time = Integer.parseInt(op_start.split(":")[0]) * 60 + Integer.parseInt(op_start.split(":")[1]);
-        int op_end_time = Integer.parseInt(op_end.split(":")[0]) * 60 + Integer.parseInt(op_end.split(":")[1]);
+        int total_time = to_sec(video_len);
+        int time = to_sec(pos);
+        int op_start_time = to_sec(op_start);
+        int op_end_time = to_sec(op_end);
         for(String s : commands) {
             switch(s) {
                 case "prev" :
@@ -21,13 +21,22 @@ class Solution {
             }
             time = op_skip(time, op_start_time, op_end_time);
         }
-        return (time / 60 >= 10 ? Integer.toString(time / 60) : "0" + Integer.toString(time / 60)) + ":" + (time % 60 >= 10 ? Integer.toString(time % 60) : "0" + Integer.toString(time % 60));
+        return result(time);
     }
     
-    static int op_skip(int t, int start, int end) {
+    int op_skip(int t, int start, int end) {
         if(t >= start && t <= end) {
             return end;
         }
         return t;
+    }
+    
+    int to_sec(String str) {
+        String[] s = str.split(":");
+        return Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
+    }
+    
+    String result(int t) {
+        return (t / 60 >= 10 ? Integer.toString(t / 60) : "0" + Integer.toString(t / 60)) + ":" + (t % 60 >= 10 ? Integer.toString(t % 60) : "0" + Integer.toString(t % 60));
     }
 }
