@@ -1,63 +1,29 @@
-import java.util.Arrays;
+import java.util.*;
+
 class Solution {
     public int[][] solution(int[][] data, String ext, int val_ext, String sort_by) {
-        int count = 0;
-        int x = 0;
-        switch (ext) {
-            case "date" : x = 1; break;                
-            case "maximum" : x = 2; break;                
-            case "remain" : x = 3; break;
-        }
+        int filter_column = getColumnIndex(ext);
+        int sort_column = getColumnIndex(sort_by);
         
-        for(int i = 0; i < data.length; i++) {
-            if(data[i][x] >= val_ext) {
-                data[i][x] = -1;
-                continue;
+        List<int[]> answer = new ArrayList<>();
+        
+        for(int[] row : data) {
+            if(row[filter_column] < val_ext) {
+                answer.add(row);
             }
-            count++;
         }
         
-        int[][] answer = new int[count][4];
+        answer.sort(Comparator.comparingInt(a -> a[sort_column]));
         
-        int idx = 0;
-        for(int i = 0; i < data.length; i++) {
-            if(data[i][x] == -1) continue;
-            for(int j = 0; j < 4; j++) {
-                answer[idx][j] = data[i][j];
-            }
-            idx++;
+        return answer.toArray(new int[0][]);
+    }
+    
+    private int getColumnIndex (String key) {
+        switch (key) {
+            case "date" : return 1;
+            case "maximum" : return 2;
+            case "remain" : return 3;
+            default : return 0;
         }
-        
-        switch (sort_by) {
-            case "code" : 
-                Arrays.sort(answer, (a, b) -> {
-                    if(a[0] != b[0]) return Integer.compare(a[0], b[0]);
-                    return Integer.compare(a[1], b[1]);
-                });
-                break;
-                
-            case "date" : 
-                Arrays.sort(answer, (a, b) -> {
-                    if(a[1] != b[1]) return Integer.compare(a[1], b[1]);
-                    return Integer.compare(a[0], b[0]);
-                });
-                break;  
-                
-            case "maximum" :
-                Arrays.sort(answer, (a, b) -> {
-                    if(a[2] != b[2]) return Integer.compare(a[2], b[2]);
-                    return Integer.compare(a[0], b[0]);
-                });
-                break;
-                
-            case "remain" : 
-                Arrays.sort(answer, (a, b) -> {
-                    if(a[3] != b[3]) return Integer.compare(a[3], b[3]);
-                    return Integer.compare(a[0], b[0]);
-                });
-                break;
-        }
-        
-        return answer;
     }
 }
